@@ -1,0 +1,6 @@
+type Article @model {
+  id: ID!
+  name: String!
+  slug: String!
+  content: String
+}

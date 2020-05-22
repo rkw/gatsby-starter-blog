@@ -1,0 +1,158 @@
+type Article {
+  id: ID!
+  name: String!
+  slug: String!
+  content: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelArticleConnection {
+  items: [Article]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelArticleFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  slug: ModelStringInput
+  content: ModelStringInput
+  and: [ModelArticleFilterInput]
+  or: [ModelArticleFilterInput]
+  not: ModelArticleFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getArticle(id: ID!): Article
+  listArticles(filter: ModelArticleFilterInput, limit: Int, nextToken: String): ModelArticleConnection
+}
+
+input CreateArticleInput {
+  id: ID
+  name: String!
+  slug: String!
+  content: String
+}
+
+input UpdateArticleInput {
+  id: ID!
+  name: String
+  slug: String
+  content: String
+}
+
+input DeleteArticleInput {
+  id: ID
+}
+
+type Mutation {
+  createArticle(input: CreateArticleInput!, condition: ModelArticleConditionInput): Article
+  updateArticle(input: UpdateArticleInput!, condition: ModelArticleConditionInput): Article
+  deleteArticle(input: DeleteArticleInput!, condition: ModelArticleConditionInput): Article
+}
+
+input ModelArticleConditionInput {
+  name: ModelStringInput
+  slug: ModelStringInput
+  content: ModelStringInput
+  and: [ModelArticleConditionInput]
+  or: [ModelArticleConditionInput]
+  not: ModelArticleConditionInput
+}
+
+type Subscription {
+  onCreateArticle: Article @aws_subscribe(mutations: ["createArticle"])
+  onUpdateArticle: Article @aws_subscribe(mutations: ["updateArticle"])
+  onDeleteArticle: Article @aws_subscribe(mutations: ["deleteArticle"])
+}
