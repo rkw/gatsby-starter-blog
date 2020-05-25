@@ -1,16 +1,21 @@
 import React from "react"
 
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import Amplify from 'aws-amplify';
+import gql from 'graphql-tag';
+import AWSAppSyncClient, { AUTH_TYPE } from 'aws-appsync';
 import awsconfig from '../aws-exports';
 Amplify.configure(awsconfig);
 
-// import { createArticle } from '../graphql/mutations';
+const client = new AWSAppSyncClient({
+  url: awsconfig.aws_appsync_graphqlEndpoint,
+  region: awsconfig.aws_appsync_region,
+  auth: {
+    type: AUTH_TYPE.API_KEY, // or type: awsconfig.aws_appsync_authenticationType,
+    apiKey: awsconfig.aws_appsync_apiKey,
+  }
+});
+
 import { listArticles } from '../graphql/queries';
-
-// const article = { id: "3", name: "First Article", slug: "first-article", content: "check it!" };
-
-// API.graphql(graphqlOperation(createArticle, {input: article}))
-
 
 class TestPage extends React.Component {
   state = {
@@ -18,8 +23,11 @@ class TestPage extends React.Component {
   }
 
   componentDidMount = async () => {
-    const resp = await API.graphql(graphqlOperation(listArticles))
-    this.setState({ articles: resp.data.listArticles.items })
+    client.query({
+      query: gql(listArticles)
+    }).then(({ data: { listArticles } }) => {
+      this.setState({ articles: listArticles.items })
+    });
   }
 
   render() {
