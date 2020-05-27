@@ -1,8 +1,14 @@
 {
-    "CreateAPIKey": 1,
+    "CreateAPIKey": 0,
     "AppSyncApiName": "blog",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authamplifyec6662f1",
+            "Outputs.UserPoolId"
+        ]
+    },
     "S3DeploymentBucket": "amplify-amplify-dev-143250-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/882152ffdcc2b406415cf176b56bfb14edcf4ed8"
+    "S3DeploymentRootKey": "amplify-appsync-files/016c1252b577bcd93dfe7de2a36e81c13e2d0343"
 }

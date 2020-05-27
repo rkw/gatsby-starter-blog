@@ -20,22 +20,21 @@
 				"authConfig": {
 					"additionalAuthenticationProviders": [],
 					"defaultAuthentication": {
-						"authenticationType": "API_KEY",
-						"apiKeyConfig": {
-							"description": "blog",
-							"apiKeyExpirationDays": 7
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authamplifyec6662f1"
 						}
 					}
 				},
 				"GraphQLAPIIdOutput": "mrydi7i6yneg3ftxxukax63vey",
-				"GraphQLAPIEndpointOutput": "https://iuroo4ixsjcvdlho6akvohx46y.appsync-api.us-east-2.amazonaws.com/graphql",
-				"GraphQLAPIKeyOutput": "da2-vqqertl7pvbhrjoskc5vhn6qw4"
+				"GraphQLAPIEndpointOutput": "https://iuroo4ixsjcvdlho6akvohx46y.appsync-api.us-east-2.amazonaws.com/graphql"
 			},
-			"lastPushTimeStamp": "2020-05-27T21:55:00.540Z",
+			"lastPushTimeStamp": "2020-05-27T23:23:02.187Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify-dev-143250-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apiblog"
-			}
+			},
+			"lastPushDirHash": "fDFVc+hBOoamV8Q3Z3AyVf2Csgc="
 		}
 	},
 	"auth": {
@@ -48,7 +47,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify-dev-143250-deployment/amplify-cfn-templates/auth/amplifyec6662f1-cloudformation-template.yml",
 				"logicalId": "authamplifyec6662f1"
 			},
-			"lastPushTimeStamp": "2020-05-27T21:55:00.545Z",
+			"lastPushTimeStamp": "2020-05-27T23:23:00.145Z",
 			"output": {
 				"AppClientSecret": "1mcnqceqnb8074json81186k0fq7nqi88vrfu53vbna6nshknv05",
 				"UserPoolId": "us-east-2_94DpuRSrh",
