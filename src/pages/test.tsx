@@ -2,6 +2,7 @@ import React from "react"
 
 import Amplify, { a } from 'aws-amplify';
 import { API, graphqlOperation } from 'aws-amplify';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import awsconfig from '../aws-exports';
 
 import { List, Typography } from 'antd';
@@ -51,75 +52,79 @@ class TestPage extends React.Component {
     }
 
     return (
-      <List
-        header={<h2>Articles</h2>}
-        bordered
-        dataSource={this.state.articles}
-        renderItem={item => (
-          <List.Item>
-            <Typography.Text mark>{item.id}</Typography.Text> {item.name},{" "}
-            {item.content}
-            <span style={{float: 'right', cursor: 'pointer'}}
-              onClick={e => {
-                this.onDelete(item.id)
-              }}
+      <div>
+        <AmplifySignOut />
+        <List
+          header={<h2>Articles</h2>}
+          bordered
+          dataSource={this.state.articles}
+          renderItem={item => (
+            <List.Item>
+              <Typography.Text mark>{item.id}</Typography.Text> {item.name},{" "}
+              {item.content}
+              <span
+                style={{ float: "right", cursor: "pointer" }}
+                onClick={e => {
+                  this.onDelete(item.id)
+                }}
+              >
+                Delete
+              </span>
+            </List.Item>
+          )}
+          footer={
+            <Form
+              ref={this.formRef}
+              {...layout}
+              name="basic"
+              initialValues={{ remember: true }}
+              onFinish={this.onSubmit}
             >
-              Delete
-            </span>
-          </List.Item>
-        )}
-        footer={
-          <Form
-            ref={this.formRef}
-            {...layout}
-            name="basic"
-            initialValues={{ remember: true }}
-            onFinish={this.onSubmit}
-          >
-            <Form.Item
-              label="Article ID"
-              name="id"
-              rules={[{ required: true, message: "Please input an ID!" }]}
-            >
-              <Input />
-            </Form.Item>
+              <Form.Item
+                label="Article ID"
+                name="id"
+                rules={[{ required: true, message: "Please input an ID!" }]}
+              >
+                <Input />
+              </Form.Item>
 
-            <Form.Item
-              label="Name"
-              name="name"
-              rules={[{ required: true, message: "Please input a name!" }]}
-            >
-              <Input />
-            </Form.Item>
+              <Form.Item
+                label="Name"
+                name="name"
+                rules={[{ required: true, message: "Please input a name!" }]}
+              >
+                <Input />
+              </Form.Item>
 
-            <Form.Item
-              label="Slug"
-              name="slug"
-              rules={[{ required: true, message: "Please input a slug!" }]}
-            >
-              <Input />
-            </Form.Item>
+              <Form.Item
+                label="Slug"
+                name="slug"
+                rules={[{ required: true, message: "Please input a slug!" }]}
+              >
+                <Input />
+              </Form.Item>
 
-            <Form.Item
-              label="Content"
-              name="content"
-              rules={[
-                { required: true, message: "Please input some content!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+              <Form.Item
+                label="Content"
+                name="content"
+                rules={[
+                  { required: true, message: "Please input some content!" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
 
-            <Form.Item {...tailLayout}>
-              <Button type="primary" htmlType="submit">
-                Add Article
-              </Button>
-            </Form.Item>
-          </Form>
-        }
-      />
+              <Form.Item {...tailLayout}>
+                <Button type="primary" htmlType="submit">
+                  Add Article
+                </Button>
+              </Form.Item>
+            </Form>
+          }
+        />
+      </div>
     )
   }
 }
 
-export default TestPage
+export default withAuthenticator(TestPage)
