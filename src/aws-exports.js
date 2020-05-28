@@ -23,7 +23,9 @@ const awsmobile = {
         "redirectSignOut": "https://www.rackanni.com/",
         "responseType": "code"
     },
-    "federationTarget": "COGNITO_USER_POOLS"
+    "federationTarget": "COGNITO_USER_POOLS",
+    "aws_mobile_analytics_app_id": "99c9e446db61484f8da4532456704532",
+    "aws_mobile_analytics_app_region": "us-east-1"
 };
 
 

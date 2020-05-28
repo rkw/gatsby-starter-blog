@@ -1,7 +1,6 @@
 import React from "react"
 
-import Amplify, { a } from 'aws-amplify';
-import { API, graphqlOperation } from 'aws-amplify';
+import Amplify, { API, graphqlOperation, Analytics } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import awsconfig from '../aws-exports';
 
@@ -32,6 +31,10 @@ class TestPage extends React.Component {
     articles.push(values)
     this.setState({articles: articles})
     this.formRef.current.resetFields()
+    Analytics.record({
+      name: 'add-article',
+      attributes: values
+    })
     console.log(articles)
   }
 
@@ -39,6 +42,10 @@ class TestPage extends React.Component {
     await API.graphql(graphqlOperation(deleteArticle, {input: {id: deleteId}}))
     let articles = this.state.articles.filter(obj => obj.id != deleteId);
     this.setState({articles: articles})
+    Analytics.record({
+      name: 'delete-article',
+      attributes: {id: deleteId}
+    })
     console.log(articles)
   }
 

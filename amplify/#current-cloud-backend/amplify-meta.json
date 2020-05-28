@@ -29,7 +29,7 @@
 				"GraphQLAPIIdOutput": "mrydi7i6yneg3ftxxukax63vey",
 				"GraphQLAPIEndpointOutput": "https://iuroo4ixsjcvdlho6akvohx46y.appsync-api.us-east-2.amazonaws.com/graphql"
 			},
-			"lastPushTimeStamp": "2020-05-27T23:23:02.187Z",
+			"lastPushTimeStamp": "2020-05-28T18:33:20.312Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify-dev-143250-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apiblog"
@@ -47,7 +47,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify-dev-143250-deployment/amplify-cfn-templates/auth/amplifyec6662f1-cloudformation-template.yml",
 				"logicalId": "authamplifyec6662f1"
 			},
-			"lastPushTimeStamp": "2020-05-27T23:23:00.145Z",
+			"lastPushTimeStamp": "2020-05-28T18:33:20.319Z",
 			"output": {
 				"AppClientSecret": "1mcnqceqnb8074json81186k0fq7nqi88vrfu53vbna6nshknv05",
 				"UserPoolId": "us-east-2_94DpuRSrh",
@@ -59,7 +59,24 @@
 				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.rackanni.com/test/\"],\"LogoutURLs\":[\"https://www.rackanni.com/\"]}",
 				"UserPoolName": "amplifyec6662f1_userpool_ec6662f1"
 			},
-			"lastPushDirHash": "gS0DNSR1rSFcYJHsVNQPDiJTcmQ="
+			"lastPushDirHash": "EmZTCkhCDKON5dCb3gHdFN+UOfE="
+		}
+	},
+	"analytics": {
+		"amplify": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify-dev-143250-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsamplify"
+			},
+			"lastPushTimeStamp": "2020-05-28T18:33:20.319Z",
+			"output": {
+				"appName": "amplify-dev",
+				"Region": "us-east-1",
+				"Id": "99c9e446db61484f8da4532456704532"
+			},
+			"lastPushDirHash": "AKe0i5Av7Dt6LhWYd8DKd5CucmQ="
 		}
 	}
 }

@@ -95,7 +95,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/amplify-amplify-dev-143250-deployment/amplify-cfn-templates/auth/amplifyec6662f1-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "amplifyec6662f1_identitypool_ec6662f1",
-					"allowUnauthenticatedIdentities": false,
+					"allowUnauthenticatedIdentities": true,
 					"resourceNameTruncated": "amplifec6662f1",
 					"userPoolName": "amplifyec6662f1_userpool_ec6662f1",
 					"autoVerifiedAttributes": "email",
@@ -140,6 +140,34 @@
 					"dependsOn": "",
 					"oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.rackanni.com/test/\"],\"LogoutURLs\":[\"https://www.rackanni.com/\"]}",
 					"hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"775414246852-qe27ld96b8hesbuqd8l7cqvvdtf5103c.apps.googleusercontent.com\",\"client_secret\":\"OQp0fDL_92bkR3MSPgFneFw7\"}]",
+					"env": "dev"
+				}
+			}
+		},
+		"analyticsamplify": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-amplify-dev-143250-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"Parameters": {
+					"appName": "amplify",
+					"roleName": "pinpointLambdaRole8f177858",
+					"cloudformationPolicyName": "cloudformationPolicy8f177858",
+					"cloudWatchPolicyName": "cloudWatchPolicy8f177858",
+					"pinpointPolicyName": "pinpointPolicy8f177858",
+					"authPolicyName": "pinpoint_amplify_8f177858",
+					"unauthPolicyName": "pinpoint_amplify_8f177858",
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"authRoleArn": {
+						"Fn::GetAtt": [
+							"AuthRole",
+							"Arn"
+						]
+					},
 					"env": "dev"
 				}
 			}
